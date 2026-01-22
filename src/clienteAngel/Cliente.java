@@ -14,7 +14,7 @@ public class Cliente {
         try {
             // 1. Conectarse al servidor (CAMBIAR LA IP POR LA DE EMILIO)
             // Ejemplo: Socket socket = new Socket("192.168.1.35", 12345);
-            Socket socket = new Socket("10.13.0.170", 12345);
+            Socket socket = new Socket("10.13.2.229", 12345);
             System.out.println("Conectado al servidor");
 
             // 2. Crear flujos para enviar y recibir datos
