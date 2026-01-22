@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/out/Servidor-Y-Cliente.iml" filepath="$PROJECT_DIR$/out/Servidor-Y-Cliente.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Servidor-Y-Cliente.iml" filepath="$PROJECT_DIR$/.idea/Servidor-Y-Cliente.iml" />
+>>>>>>> feature/servidor
     </modules>
   </component>
 </project>
