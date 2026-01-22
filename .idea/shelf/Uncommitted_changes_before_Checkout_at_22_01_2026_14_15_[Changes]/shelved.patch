@@ -1,0 +1,112 @@
+Index: src/clienteAngel/Cliente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package clienteAngel;\r\n\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.IOException;\r\nimport java.io.InputStreamReader;\r\nimport java.io.PrintWriter;\r\nimport java.net.Socket;\r\n\r\npublic class Cliente {\r\n    public static void main(String[] args) {\r\n        try {\r\n            // 1. Conectarse al servidor (CAMBIAR LA IP POR LA DE EMILIO)\r\n            // Ejemplo: Socket socket = new Socket(\"192.168.1.35\", 12345);\r\n            Socket socket = new Socket(\"10.13.0.170\", 12345);\r\n            System.out.println(\"Conectado al servidor\");\r\n\r\n            // 2. Crear flujos para enviar y recibir datos\r\n            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));\r\n            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);\r\n\r\n            //Cifrado antes de enviar\r\n            String mensajeOriginal = \"Hola, servidor. Soy Ángel y este mensaje es TOP SECRET.\";\r\n            System.out.println(\"Enviando (Texto plano): \" + mensajeOriginal);\r\n\r\n            // 3. Ciframos el mensaje usando nuestra clase de utilidad\r\n            String mensajeCifrado = CifradoAES.cifrar(mensajeOriginal);\r\n            System.out.println(\"Enviando (Cifrado): \" + mensajeCifrado);\r\n\r\n            // 4. Enviamos el mensaje cifrado por el socket\r\n            out.println(mensajeCifrado);\r\n\r\n            // 5. Cerrar los recursos\r\n            in.close();\r\n            out.close();\r\n            socket.close();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}
+===================================================================
+diff --git a/src/clienteAngel/Cliente.java b/src/clienteAngel/Cliente.java
+--- a/src/clienteAngel/Cliente.java	(revision 1e3d7a0d7352bcac2691dae386227027818c1069)
++++ b/src/clienteAngel/Cliente.java	(date 1769087711154)
+@@ -20,7 +20,7 @@
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+ 
+             //Cifrado antes de enviar
+-            String mensajeOriginal = "Hola, servidor. Soy Ángel y este mensaje es TOP SECRET.";
++            String mensajeOriginal = "Hola, servidor. Soy Ángel y este mensaje es secreto";
+             System.out.println("Enviando (Texto plano): " + mensajeOriginal);
+ 
+             // 3. Ciframos el mensaje usando nuestra clase de utilidad
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ccfdecac-a6cc-4d3d-9b6c-79a47b7cffde\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"develop\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;AngelCamp&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/AngelCamp/Servidor-Y-Cliente.git&quot;,\r\n    &quot;accountId&quot;: &quot;edc83ee2-6261-419f-8773-4281f01d3776&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"38c4ro4j8kjGKTeyV5XbtkbeaAH\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.Cliente.executor&quot;: &quot;Run&quot;,\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;feature/cliente&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\AngelDox\\IdeaProjects\\Servidor-Y-Cliente\\out\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.Cliente\">\r\n    <configuration name=\"CifradoAES\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"clienteAngel.CifradoAES\" />\r\n      <module name=\"Servidor-Y-Cliente\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"clienteAngel.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Cliente\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"clienteAngel.Cliente\" />\r\n      <module name=\"Servidor-Y-Cliente\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"clienteAngel.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Cliente\" />\r\n        <item itemvalue=\"Application.CifradoAES\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ccfdecac-a6cc-4d3d-9b6c-79a47b7cffde\" name=\"Changes\" comment=\"\" />\r\n      <created>1769085727142</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1769085727142</updated>\r\n      <workItem from=\"1769085728201\" duration=\"730000\" />\r\n      <workItem from=\"1769086480331\" duration=\"16000\" />\r\n      <workItem from=\"1769086518883\" duration=\"178000\" />\r\n      <workItem from=\"1769086714495\" duration=\"27000\" />\r\n      <workItem from=\"1769086751613\" duration=\"7000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1e3d7a0d7352bcac2691dae386227027818c1069)
++++ b/.idea/workspace.xml	(date 1769087323263)
+@@ -4,7 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ccfdecac-a6cc-4d3d-9b6c-79a47b7cffde" name="Changes" comment="" />
++    <list default="true" id="ccfdecac-a6cc-4d3d-9b6c-79a47b7cffde" name="Changes" comment="Implementacion inicial de Cliente y CifradoAES" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -45,28 +45,30 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.Cliente.executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;feature/cliente&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.CifradoAES.executor": "Run",
++    "Application.Cliente.executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "git-widget-placeholder": "feature/cliente",
++    "kotlin-language-version-configured": "true",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Project",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\AngelDox\IdeaProjects\Servidor-Y-Cliente" />
+       <recent name="C:\Users\AngelDox\IdeaProjects\Servidor-Y-Cliente\out" />
+     </key>
+   </component>
+@@ -124,7 +126,17 @@
+       <workItem from="1769086518883" duration="178000" />
+       <workItem from="1769086714495" duration="27000" />
+       <workItem from="1769086751613" duration="7000" />
++      <workItem from="1769086770136" duration="548000" />
+     </task>
++    <task id="LOCAL-00001" summary="Implementacion inicial de Cliente y CifradoAES">
++      <option name="closed" value="true" />
++      <created>1769086936171</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1769086936172</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -141,4 +153,8 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Implementacion inicial de Cliente y CifradoAES" />
++    <option name="LAST_COMMIT_MESSAGE" value="Implementacion inicial de Cliente y CifradoAES" />
++  </component>
+ </project>
+\ No newline at end of file
